@@ -1,0 +1,39 @@
+<div bsModal #modal="bs-modal" (onShown)="onShown()" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form *ngIf="active" #personForm="ngForm" novalidate (ngSubmit)="save()">
+          <div class="modal-header">
+              <h4 class="modal-title">
+              <span>{{"EditPerson" | localize}}</span>
+            </h4>
+            <button type="button" class="close" (click)="close()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>          
+          </div>
+          <div class="modal-body">
+  
+            <div class="form-group">
+              <label>{{"Name" | localize}}</label>
+              <input #nameInput class="form-control" type="text" name="name" [(ngModel)]="person.name" required maxlength="32">            
+            </div>
+  
+            <div class="form-group">
+              <label>{{"Surname" | localize}}</label>
+              <input class="form-control" type="email" name="surname" [(ngModel)]="person.surname" required maxlength="32">
+            </div>
+  
+            <div class="form-group">
+            <label>{{"EmailAddress" | localize}}</label>
+              <input class="form-control" type="email" name="emailAddress" [(ngModel)]="person.emailAddress" required maxlength="255" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$">                        
+            </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button [disabled]="saving" type="button" class="btn btn-secondary" (click)="close()">{{"Cancel" | localize}}</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!personForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot' | localize)"><i class="fa fa-save"></i> <span>{{"Save" | localize}}</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

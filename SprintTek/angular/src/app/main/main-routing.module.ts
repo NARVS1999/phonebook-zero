@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PhoneBookComponent } from './phonebook/phonebook.component';
 
 @NgModule({
     imports: [
@@ -8,13 +9,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
             {
                 path: '',
                 children: [
-                    { path: 'dashboard', component: DashboardComponent, data: { permission: 'Pages.Tenant.Dashboard' } },                   
+                    { path: 'dashboard', component: DashboardComponent, data: { permission: 'Pages.Tenant.Dashboard' } },
+                    { path: 'phonebook', component: PhoneBookComponent, data: { permission: 'Pages.Tenant.PhoneBook' } },
                     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-                    { path: '**', redirectTo: 'dashboard' },
-                     {
-                        path: 'phonebook',
-                        loadChildren: () => import('./phonebook/phonebook.module').then(m => m.PhoneBookModule)
-                    } 
+                    { path: '**', redirectTo: 'dashboard' }
                 ]
             }
         ])
